@@ -1,0 +1,213 @@
+.profile-page {
+  min-height: 100vh;
+  background: var(--background);
+  padding: var(--space-xl);
+}
+
+.profile-header {
+  max-width: 800px;
+  margin: 0 auto var(--space-xl);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+
+.profile-header h1 {
+  font-size: 32px;
+}
+
+.profile-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-md);
+}
+
+.profile-header-section {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: var(--space-xl);
+}
+
+.profile-avatar {
+  position: relative;
+}
+
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary-light);
+}
+
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 3px solid white;
+}
+
+.profile-title {
+  flex: 1;
+}
+
+.profile-title h2 {
+  font-size: 24px;
+  margin-bottom: var(--space-xs);
+}
+
+.profile-title p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-badge.not_started {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.accepted {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* Profile Info */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.info-section h3 {
+  font-size: 18px;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--border);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.info-item {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.info-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--background);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.info-content {
+  flex: 1;
+}
+
+.info-content label {
+  display: block;
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.info-content span {
+  font-weight: 500;
+}
+
+.info-content input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+}
+
+.info-content input:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Profile Actions */
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .profile-header-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-actions {
+    flex-direction: column;
+  }
+
+  .profile-actions .btn {
+    width: 100%;
+  }
+}

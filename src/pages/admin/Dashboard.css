@@ -1,0 +1,334 @@
+/* Admin Dashboard Styles - uses the same layout as applicant dashboard but with different content */
+
+/* Dashboard Layout - Fixed to prevent horizontal scroll */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.dashboard-main {
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.dashboard-content {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  padding: var(--space-lg);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+  width: 100%;
+  min-width: 0;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  position: relative;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.stat-icon.primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+}
+
+.stat-icon.warning {
+  background: linear-gradient(135deg, var(--warning), #fbbf24);
+}
+
+.stat-icon.success {
+  background: linear-gradient(135deg, var(--success), #34d399);
+}
+
+.stat-icon.error {
+  background: linear-gradient(135deg, var(--error), #f87171);
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-info .stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  line-height: 1;
+}
+
+.stat-info .stat-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+.stat-change {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.stat-change.primary { color: var(--primary); }
+.stat-change.warning { color: var(--warning); }
+.stat-change.success { color: var(--success); }
+.stat-change.error { color: var(--error); }
+
+/* Secondary Stats */
+.secondary-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  width: 100%;
+  min-width: 0;
+}
+
+.secondary-stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.secondary-stat-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--background);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.secondary-stat-info {
+  min-width: 0;
+}
+
+.secondary-stat-info .stat-value {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: var(--font-heading);
+}
+
+.secondary-stat-info .stat-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Recent Applications Card */
+.recent-applications-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-xl);
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.card-header h3 {
+  font-size: 14px;
+}
+
+.view-all-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: none;
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.view-all-btn:hover {
+  text-decoration: underline;
+}
+
+/* Applications Table */
+.applications-table {
+  overflow-x: auto;
+  width: 100%;
+}
+
+.applications-table table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px;
+}
+
+.applications-table th,
+.applications-table td {
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.applications-table th {
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.applications-table td {
+  font-size: 13px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 2px var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-badge.selected,
+.status-badge.accepted {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-badge.rejected {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.action-btn {
+  background: var(--primary);
+  color: white;
+  padding: 4px var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.action-btn:hover {
+  background: var(--primary-dark);
+}
+
+/* Quick Actions */
+.quick-actions-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.quick-actions-card h3 {
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+  width: 100%;
+  min-width: 0;
+}
+
+.quick-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  background: var(--background);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 12px;
+  transition: var(--transition-normal);
+  text-align: center;
+}
+
+.quick-action-btn:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.quick-action-btn span {
+  font-size: 11px;
+}
+
+/* Responsive */
+@media (max-width: 1400px) {
+  .stats-grid,
+  .secondary-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .stats-grid,
+  .secondary-stats-grid,
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-content {
+    padding: var(--space-md);
+  }
+}
