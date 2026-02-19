@@ -59,7 +59,8 @@ const SignupPage = () => {
         fullName: formData.fullName,
         email: formData.email,
         phone: formData.phone,
-        dob: formData.dob
+        dob: formData.dob,
+        password: formData.password
       });
       navigate('/applicant');
     } catch (err) {

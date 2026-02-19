@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { authAPI } from '../services/api';
 
 const AuthContext = createContext(null);
 
@@ -13,92 +14,121 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('admissionPortalUser');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setLoading(false);
+    const checkAuth = async () => {
+      const storedUser = localStorage.getItem('admissionPortalUser');
+      const storedToken = localStorage.getItem('admissionPortalToken');
+      
+      if (storedUser && storedToken) {
+        try {
+          // Verify token is still valid by fetching user data
+          const response = await authAPI.getUser();
+          if (response.success) {
+            setUser(response.data);
+          } else {
+            // Token invalid, clear storage
+            localStorage.removeItem('admissionPortalUser');
+            localStorage.removeItem('admissionPortalToken');
+          }
+        } catch (err) {
+          // Token invalid or expired, clear storage
+          localStorage.removeItem('admissionPortalUser');
+          localStorage.removeItem('admissionPortalToken');
+        }
+      }
+      setLoading(false);
+    };
+
+    checkAuth();
   }, []);
 
-  const login = (email, password) => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (email === 'admin@school.com' && password === 'admin123') {
-          const userData = {
-            id: '1',
-            email: 'admin@school.com',
-            name: 'Admin User',
-            role: 'admin',
-            avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150'
-          };
-          setUser(userData);
-          localStorage.setItem('admissionPortalUser', JSON.stringify(userData));
-          resolve(userData);
-        } else if (email && password) {
-          // Extract name from email (e.g., john.doe@example.com -> John Doe)
-          const nameFromEmail = email.split('@')[0]
-            .split('.')
-            .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-            .join(' ');
-          
-          const userData = {
-            id: '2',
-            email: email,
-            name: nameFromEmail,
-            role: 'applicant',
-            avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-            applicationStatus: 'pending',
-            applicationId: null
-          };
-          setUser(userData);
-          localStorage.setItem('admissionPortalUser', JSON.stringify(userData));
-          resolve(userData);
-        } else {
-          reject(new Error('Invalid credentials'));
-        }
-      }, 1000);
-    });
+  const login = async (email, password) => {
+    try {
+      setError(null);
+      const response = await authAPI.login(email, password);
+      
+      if (response.success) {
+        const { user: userData, token } = response.data;
+        setUser(userData);
+        localStorage.setItem('admissionPortalUser', JSON.stringify(userData));
+        localStorage.setItem('admissionPortalToken', token);
+        return userData;
+      } else {
+        throw new Error(response.message || 'Login failed');
+      }
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || err.message || 'Login failed';
+      throw new Error(errorMessage);
+    }
   };
 
-  const signup = (userData) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const newUser = {
-          id: Date.now().toString(),
-          email: userData.email,
-          name: userData.fullName,
-          role: 'applicant',
-          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-          applicationStatus: 'not_started',
-          applicationId: null
-        };
+  const signup = async (userData) => {
+    try {
+      setError(null);
+      const response = await authAPI.signup(userData);
+      
+      if (response.success) {
+        const { user: newUser, token } = response.data;
         setUser(newUser);
         localStorage.setItem('admissionPortalUser', JSON.stringify(newUser));
-        resolve(newUser);
-      }, 1000);
-    });
+        localStorage.setItem('admissionPortalToken', token);
+        return newUser;
+      } else {
+        throw new Error(response.message || 'Signup failed');
+      }
+    } catch (err) {
+      const errorMessage = err.response?.data?.message || err.message || 'Signup failed';
+      throw new Error(errorMessage);
+    }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('admissionPortalUser');
+  const logout = async () => {
+    try {
+      await authAPI.logout();
+    } catch (err) {
+      // Ignore logout errors
+    } finally {
+      setUser(null);
+      localStorage.removeItem('admissionPortalUser');
+      localStorage.removeItem('admissionPortalToken');
+    }
   };
 
-  const updateUser = (updates) => {
-    const updatedUser = { ...user, ...updates };
-    setUser(updatedUser);
-    localStorage.setItem('admissionPortalUser', JSON.stringify(updatedUser));
+  const updateUser = async (updates) => {
+    try {
+      const response = await authAPI.updateProfile(updates);
+      if (response.success) {
+        const updatedUser = { ...user, ...updates };
+        setUser(updatedUser);
+        localStorage.setItem('admissionPortalUser', JSON.stringify(updatedUser));
+      }
+    } catch (err) {
+      throw new Error(err.response?.data?.message || 'Update failed');
+    }
+  };
+
+  const changePassword = async (currentPassword, newPassword) => {
+    try {
+      const response = await authAPI.changePassword(currentPassword, newPassword);
+      if (!response.success) {
+        throw new Error(response.message || 'Password change failed');
+      }
+    } catch (err) {
+      throw new Error(err.response?.data?.message || 'Password change failed');
+    }
   };
 
   const value = {
     user,
     loading,
+    error,
     login,
     signup,
     logout,
     updateUser,
+    changePassword,
     isAuthenticated: !!user,
     isAdmin: user?.role === 'admin',
     isApplicant: user?.role === 'applicant'
