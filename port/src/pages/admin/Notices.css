@@ -1,0 +1,138 @@
+.notices-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.notice-card {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.notice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-md);
+}
+
+.notice-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.notice-title-row h3 {
+  font-size: 20px;
+}
+
+.priority-badge {
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.priority-badge.high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-badge.normal {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.priority-badge.low {
+  background: #e2e8f0;
+  color: #64748b;
+}
+
+.notice-date {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.notice-content {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: var(--space-lg);
+}
+
+.notice-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.notice-actions .action-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.notice-actions .action-btn.edit {
+  background: var(--background);
+  color: var(--text-secondary);
+}
+
+.notice-actions .action-btn.edit:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.notice-actions .action-btn.delete {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.notice-actions .action-btn.delete:hover {
+  background: #991b1b;
+  color: white;
+}
+
+/* Modal Styles (same as Programs) */
+.modal-content form {
+  padding: var(--space-xl);
+}
+
+.modal-content .input-group {
+  margin-bottom: var(--space-md);
+}
+
+.modal-content .input-group label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+}
+
+.modal-content .input-group input,
+.modal-content .input-group textarea,
+.modal-content .input-group select {
+  width: 100%;
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.modal-content .input-group textarea {
+  min-height: 120px;
+}
+
+.modal-content .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-lg);
+}

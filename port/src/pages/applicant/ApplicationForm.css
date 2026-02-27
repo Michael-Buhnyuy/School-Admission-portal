@@ -1,0 +1,344 @@
+.application-form-page {
+  min-height: 100vh;
+  background: var(--background);
+  padding: var(--space-xl);
+}
+
+.form-header {
+  max-width: 900px;
+  margin: 0 auto var(--space-xl);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: var(--space-md);
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+
+.form-header h1 {
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+/* Progress Steps */
+.form-progress {
+  display: flex;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto var(--space-xl);
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: var(--transition-normal);
+}
+
+.progress-item.active .step-number {
+  background: var(--primary);
+  color: white;
+}
+
+.progress-item.completed .step-number {
+  background: var(--success);
+  color: white;
+}
+
+.step-title {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.progress-item.active .step-title {
+  color: var(--primary);
+}
+
+.progress-item.completed .step-title {
+  color: var(--success);
+}
+
+.step-line {
+  width: 80px;
+  height: 2px;
+  background: var(--border);
+  margin: 0 var(--space-sm);
+}
+
+.progress-item.completed + .progress-item .step-line,
+.progress-item.completed .step-line {
+  background: var(--success);
+}
+
+/* Form Container */
+.form-container {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  box-shadow: var(--shadow-md);
+}
+
+.step-content h2 {
+  font-size: 24px;
+  margin-bottom: var(--space-sm);
+}
+
+.step-description {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.input-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--card-bg);
+  font-size: 14px;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-group input.error,
+.input-group select.error {
+  border-color: var(--error);
+}
+
+.error-text {
+  color: var(--error);
+  font-size: 12px;
+  margin-top: var(--space-xs);
+  display: block;
+}
+
+/* File Upload */
+.file-upload {
+  position: relative;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.file-upload:hover {
+  border-color: var(--primary);
+  background: rgba(59, 130, 246, 0.05);
+}
+
+.file-upload svg {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.file-upload span {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.file-upload input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Programs Grid */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.program-option {
+  border: 2px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: var(--transition-normal);
+  position: relative;
+}
+
+.program-option:hover {
+  border-color: var(--primary-light);
+}
+
+.program-option.selected {
+  border-color: var(--primary);
+  background: rgba(30, 58, 138, 0.05);
+}
+
+.program-option h4 {
+  font-size: 16px;
+  margin-bottom: var(--space-xs);
+}
+
+.program-option p {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: var(--space-sm);
+}
+
+.program-option .seats {
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.program-option .check-icon {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  color: var(--primary);
+}
+
+/* Review Section */
+.review-sections {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.review-section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border);
+}
+
+.review-header h3 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 16px;
+}
+
+.edit-btn {
+  background: none;
+  color: var(--primary);
+  padding: var(--space-xs);
+}
+
+.edit-btn:hover {
+  background: var(--background);
+  border-radius: var(--radius-sm);
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.review-grid span {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Submit Confirmation */
+.submit-confirmation {
+  margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  background: var(--background);
+  border-radius: var(--radius-md);
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border);
+}
+
+.form-actions .btn {
+  min-width: 150px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .form-progress {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .step-line {
+    display: none;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+}
