@@ -1,0 +1,655 @@
+/* ==============================
+   PROGRESSIVE FORM STYLING
+   ============================== */
+
+:root {
+    --primary-color: #1d4746;
+    --success-color: #f58428;
+    --danger-color: #dc3545;
+    --info-color: #0dcaf0;
+    --accent-color: #e88418;
+    --light-bg: #f8f9fa;
+    --border-color: #dee2e6;
+    --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 900px;
+}
+
+/* ==============================
+   HEADER STYLING
+   ============================== */
+
+.display-5 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* Header panel that wraps title + stepper */
+.header-panel {
+    background: var(--primary-color);
+    color: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.header-panel .display-5 {
+    color: #fff !important;
+}
+
+.header-panel .text-muted {
+    color: rgba(255,255,255,0.9) !important;
+}
+
+.header-panel .stepper-wrapper::before {
+    background: rgba(255,255,255,0.16);
+}
+
+.header-panel .step-label {
+    color: rgba(255,255,255,0.9);
+}
+
+.header-panel .step-circle {
+    background: #fff;
+    color: #333;
+    border-color: rgba(255,255,255,0.6);
+}
+
+.header-panel .stepper-item.active .step-circle {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 0 0 8px rgba(232,132,24,0.12);
+    transform: scale(1.1);
+}
+
+.header-panel .stepper-item.active .step-label {
+    color: #fff;
+}
+
+/* ==============================
+   STEPPER STYLING
+   ============================== */
+
+.stepper-container {
+    position: relative;
+}
+
+.stepper-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    padding: 0 10px;
+}
+
+/* Connecting line before/after circles */
+.stepper-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: var(--border-color);
+    z-index: 1;
+}
+
+.stepper-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+}
+
+.step-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    font-size: 18px;
+}
+
+.step-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-align: center;
+    line-height: 1.3;
+    max-width: 70px;
+    transition: all 0.3s ease;
+}
+
+/* Active state */
+.stepper-item.active .step-circle {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 0 0 8px rgba(29, 71, 70, 0.12);
+    transform: scale(1.1);
+}
+
+.stepper-item.active .step-label {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Completed state */
+.stepper-item.completed .step-circle {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: white;
+}
+
+.stepper-item.completed .step-label {
+    color: var(--success-color);
+}
+
+/* Update connecting line for completed steps */
+.stepper-item.completed:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    width: 200%;
+    height: 2px;
+    background: var(--success-color);
+    z-index: 1;
+}
+
+/* ==============================
+   FORM CARD STYLING
+   ============================== */
+
+.form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================
+   FORM STEPS
+   ============================== */
+
+.form-step {
+    display: none;
+    animation: fadeInStep 0.5s ease-in-out;
+}
+
+.form-step.active {
+    display: block;
+}
+
+@keyframes fadeInStep {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.step-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--light-bg);
+    padding-bottom: 15px;
+}
+
+/* ==============================
+   FORM CONTROLS
+   ============================== */
+
+.form-label {
+    color: #333;
+    font-size: 19px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.form-control,
+.form-select {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(29, 71, 70, 0.15);
+    background-color: #fff;
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background-color: var(--light-bg);
+    opacity: 0.6;
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Radio and checkbox styling */
+.form-check {
+    padding-left: 0;
+}
+
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: all 0.2s ease;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.form-check-label {
+    cursor: pointer;
+    user-select: none;
+    font-weight: 500;
+}
+
+/* ==============================
+   PROGRAM GRID
+   ============================== */
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.program-grid .form-check {
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.program-grid .form-check:hover {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-sm);
+}
+
+.program-grid .form-check-input:checked {
+    ~ .form-check-label {
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+}
+
+/* ==============================
+   TABLE STYLING
+   ============================== */
+
+.table {
+    margin-bottom: 20px;
+    border-collapse: collapse;
+}
+
+.table-light thead th {
+    background-color: var(--light-bg);
+    border-color: var(--border-color);
+    font-weight: 600;
+    color: #333;
+    font-size: 13px;
+}
+
+.table tbody td {
+    border-color: var(--border-color);
+    vertical-align: middle;
+    padding: 12px;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--light-bg);
+}
+
+.table input,
+.table select {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 13px;
+}
+
+/* ==============================
+   UPLOAD AREA
+   ============================== */
+
+.upload-area {
+    border: 2px dashed var(--primary-color);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(29, 71, 70, 0.05);
+}
+
+.upload-area:hover {
+    background-color: rgba(29, 71, 70, 0.09);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.upload-area p {
+    margin: 10px 0;
+    color: #333;
+    font-weight: 500;
+}
+
+.upload-area small {
+    display: block;
+    margin-top: 5px;
+}
+
+/* ==============================
+   REVIEW SECTION
+   ============================== */
+
+.review-section {
+    background-color: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.review-item {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 3px solid var(--info-color);
+}
+
+.review-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.review-value {
+    font-size: 14px;
+    color: #333;
+    word-break: break-word;
+}
+
+/* ==============================
+   BUTTONS
+   ============================== */
+
+.btn {
+    padding: 12px 24px;
+    font-weight: 600;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-primary:hover {
+    background-color: #cf650f;
+    border-color: #cf650f;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(232, 132, 24, 0.28);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.btn-success:hover {
+    background-color: #157347;
+    border-color: #157347;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(25, 135, 84, 0.3);
+}
+
+.btn-outline-secondary {
+    color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   ALERTS
+   ============================== */
+
+.alert {
+    border-radius: 6px;
+    border-left: 4px solid;
+}
+
+.alert-info {
+    border-color: var(--info-color);
+    background-color: rgba(13, 202, 240, 0.1);
+    color: #0c5460;
+}
+
+.alert-success {
+    border-color: var(--success-color);
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #0f5132;
+}
+
+/* ==============================
+   RESPONSIVE DESIGN
+   ============================== */
+
+@media (max-width: 768px) {
+    .form-card {
+        padding: 25px;
+    }
+
+    .stepper-wrapper {
+        gap: 4px;
+        padding: 0 5px;
+    }
+
+    .step-circle {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .step-label {
+        font-size: 10px;
+        max-width: 50px;
+    }
+
+    .program-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
+    }
+
+    .review-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .d-flex gap-2 {
+        flex-direction: column;
+    }
+
+    .btn-lg {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-card {
+        padding: 20px;
+    }
+
+    .step-title {
+        font-size: 18px;
+    }
+
+    .stepper-wrapper::before {
+        display: none;
+    }
+
+    .stepper-item {
+        flex: 0 1 auto;
+    }
+
+    .row.g-3 {
+        --bs-gutter-x: 0.75rem;
+        --bs-gutter-y: 0.75rem;
+    }
+
+    .col-md-4,
+    .col-md-6 {
+        width: 100%;
+    }
+}
+
+/* ==============================
+   ANIMATIONS
+   ============================== */
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(29, 71, 70, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(29, 71, 70, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(29, 71, 70, 0);
+    }
+}
+
+.btn-primary:active {
+    animation: pulse 0.3s ease-out;
+}
+
+/* Smooth transitions */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select,
+textarea {
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    body {
+        background: white;
+    }
+
+    .btn {
+        display: none;
+    }
+
+    .form-card {
+        box-shadow: none;
+        border: 1px solid var(--border-color);
+    }
+}
