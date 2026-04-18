@@ -116,7 +116,7 @@ const LandingPage = () => {
 
               <div className="header-actions">
                 <Link to="/login" className="btn btn-secondary btn-sm">Admin Login</Link>
-                <Link to="/login" className="btn btn-primary btn-sm">Apply Now</Link>
+                <Link to="/apply" className="btn btn-primary btn-sm">Apply Now</Link>
               </div>
 
               <button 
@@ -145,7 +145,7 @@ const LandingPage = () => {
             <h1>Shape Your Future at Excellence Academy</h1>
             <p className="hero-subtitle">Join a community of achievers and leaders</p>
             <div className="hero-buttons">
-              <Link to="/login" className="btn btn-primary btn-lg">Apply Now</Link>
+              <Link to="/apply" className="btn btn-primary btn-lg">Apply Now</Link>
               <a href="#about" className="btn btn-secondary btn-lg">Learn More</a>
             </div>
           </motion.div>

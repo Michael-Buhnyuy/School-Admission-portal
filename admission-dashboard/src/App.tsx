@@ -24,6 +24,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/apply" element={<ApplicationForm />} />
+            <Route path="/applicationForm" element={<Navigate to="/apply" replace />} />
             <Route path="/applicant/login" element={<ApplicantLogin />} />
             <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/app" element={<Layout />}>
